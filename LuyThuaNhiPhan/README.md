@@ -56,6 +56,19 @@ long long binpow(long long a, long long b) {
 }
 ```
 
+**Python:**
+```python
+def binpow_recursive(a, b):
+    """Lũy thừa nhị phân đệ quy"""
+    if b == 0:
+        return 1
+    res = binpow_recursive(a, b // 2)
+    if b % 2:
+        return res * res * a
+    else:
+        return res * res
+```
+
 Cách tiếp cận thứ hai loại bỏ đệ quy. Nó tính tất cả các lũy thừa trong một vòng lặp và nhân các lũy thừa tương ứng với các bit được đặt trong $n$. Mặc dù độ phức tạp của cả hai cách tiếp cận đều giống nhau, nhưng cách tiếp cận lặp sẽ nhanh hơn một chút trong thực tế vì chúng ta không có chi phí từ các lệnh gọi đệ quy.
 
 ```cpp
@@ -69,6 +82,19 @@ long long binpow(long long a, long long b) {
     }
     return res;
 }
+```
+
+**Python:**
+```python
+def binpow(a, b):
+    """Lũy thừa nhị phân lặp"""
+    res = 1
+    while b > 0:
+        if b & 1:
+            res = res * a
+        a = a * a
+        b >>= 1
+    return res
 ```
 
 ## Ứng dụng
@@ -109,6 +135,25 @@ i64 modpow(i64 a, i64 b, i64 m) {
 }
 ```
 
+**Python:**
+```python
+def modpow(a, b, m):
+    """Lũy thừa nhị phân với modulo"""
+    a %= m
+    res = 1
+    while b > 0:
+        if b & 1:
+            res = (res * a) % m
+        a = (a * a) % m
+        b >>= 1
+    return res
+
+# Hoặc sử dụng hàm có sẵn
+def modpow_builtin(a, b, m):
+    """Sử dụng hàm pow có sẵn của Python"""
+    return pow(a, b, m)
+```
+
 **Lưu ý:** Nếu $m$ là một số nguyên 64 bit, mọi thứ trở nên phức tạp hơn, vì các kiểu tích hợp không đủ lớn. Một giải pháp là sử dụng thư viện BigInteger, nhưng rất chậm. Một giải pháp khác là sử dụng Newton-Raphson để chia: <https://en.wikipedia.org/wiki/Division_algorithm#Newton%E2%80%93Raphson_division>. Cuối cùng, chúng ta có thể sử dụng lũy thừa nhị phân cho phép nhân modulo. Đây được mô tả trong phần sau.
 
 ### Tính toán hiệu quả các số Fibonacci
@@ -147,6 +192,27 @@ vector<int> permute(vector<int> sequence, vector<int> permutation, long long k) 
     }
     return sequence;
 }
+```
+
+**Python:**
+```python
+def apply_permutation(sequence, permutation):
+    """Áp dụng một hoán vị cho dãy"""
+    return [sequence[permutation[i]] for i in range(len(sequence))]
+
+def permute(sequence, permutation, k):
+    """Áp dụng hoán vị k lần bằng lũy thừa nhị phân"""
+    while k > 0:
+        if k & 1:
+            sequence = apply_permutation(sequence, permutation)
+        permutation = apply_permutation(permutation, permutation)
+        k >>= 1
+    return sequence
+
+# Ví dụ sử dụng:
+# sequence = [1, 2, 3, 4, 5]
+# permutation = [1, 0, 3, 2, 4]  # swap 0<->1, 2<->3, 4 stays
+# result = permute(sequence, permutation, 3)
 ```
 
 **Lưu ý:** Bài toán này có thể được giải quyết hiệu quả hơn trong thời gian tuyến tính bằng cách xây dựng đồ thị hoán vị và xem xét từng chu trình độc lập. Sau đó, bạn có thể tính $k$ modulo kích thước của chu trình và tìm vị trí cuối cùng cho mỗi số là một phần của chu trình này.

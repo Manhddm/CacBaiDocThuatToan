@@ -33,12 +33,29 @@ int gcd (int a, int b) {
 }
 ```
 
+**Python:**
+```python
+def gcd_recursive(a, b):
+    """Thuật toán Euclid đệ quy"""
+    if b == 0:
+        return a
+    else:
+        return gcd_recursive(b, a % b)
+```
+
 Sử dụng toán tử ba ngôi trong C++, ta có thể viết ngắn gọn hơn:
 
 ```cpp
 int gcd (int a, int b) {
     return b ? gcd (b, a % b) : a;
 }
+```
+
+**Python:**
+```python
+def gcd_ternary(a, b):
+    """Thuật toán Euclid sử dụng toán tử ba ngôi"""
+    return gcd_ternary(b, a % b) if b else a
 ```
 
 Và cuối cùng, đây là phiên bản không đệ quy:
@@ -51,6 +68,22 @@ int gcd (int a, int b) {
     }
     return a;
 }
+```
+
+**Python:**
+```python
+def gcd_iterative(a, b):
+    """Thuật toán Euclid lặp"""
+    while b:
+        a, b = b, a % b
+    return a
+
+# Hoặc sử dụng hàm có sẵn trong Python
+import math
+
+def gcd_builtin(a, b):
+    """Sử dụng hàm gcd có sẵn của Python"""
+    return math.gcd(a, b)
 ```
 
 Lưu ý: Từ C++17, `gcd` đã được cài đặt sẵn trong thư viện chuẩn C++.
@@ -83,6 +116,20 @@ int lcm (int a, int b) {
 }
 ```
 
+**Python:**
+```python
+def lcm(a, b):
+    """Tính bội chung nhỏ nhất"""
+    return a // gcd_iterative(a, b) * b
+
+# Hoặc sử dụng hàm có sẵn từ Python 3.9+
+import math
+
+def lcm_builtin(a, b):
+    """Sử dụng hàm lcm có sẵn của Python"""
+    return math.lcm(a, b)
+```
+
 ## GCD nhị phân (Binary GCD)
 
 Thuật toán GCD nhị phân là một tối ưu hóa cho thuật toán Euclid thông thường.
@@ -111,6 +158,41 @@ int gcd(int a, int b) {
     } while (b);
     return a << shift;
 }
+```
+
+**Python:**
+```python
+def gcd_binary(a, b):
+    """Thuật toán GCD nhị phân (Binary GCD)"""
+    if not a or not b:
+        return a | b
+    
+    # Đếm số bit 0 ở cuối của cả a và b
+    shift = 0
+    while ((a | b) & 1) == 0:
+        a >>= 1
+        b >>= 1
+        shift += 1
+    
+    # Loại bỏ tất cả bit 0 ở cuối của a
+    while (a & 1) == 0:
+        a >>= 1
+    
+    while b:
+        # Loại bỏ tất cả bit 0 ở cuối của b
+        while (b & 1) == 0:
+            b >>= 1
+        
+        # Đảm bảo a <= b
+        if a > b:
+            a, b = b, a
+        
+        b -= a
+    
+    return a << shift
+
+# Ví dụ sử dụng:
+# print(gcd_binary(48, 18))  # Kết quả: 6
 ```
 
 Lưu ý: Tối ưu hóa này thường không cần thiết, hầu hết các ngôn ngữ lập trình đều đã có hàm GCD trong thư viện chuẩn. Ví dụ, C++17 có hàm `std::gcd` trong header `numeric`.

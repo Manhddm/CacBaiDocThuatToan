@@ -57,6 +57,25 @@ int gcd(int a, int b, int& x, int& y) {
 }
 ```
 
+**Python:**
+```python
+def extended_gcd(a, b):
+    """Thuật toán Euclid mở rộng đệ quy"""
+    if b == 0:
+        return a, 1, 0
+    
+    gcd, x1, y1 = extended_gcd(b, a % b)
+    x = y1
+    y = x1 - (a // b) * y1
+    
+    return gcd, x, y
+
+# Ví dụ sử dụng:
+# gcd, x, y = extended_gcd(55, 80)
+# print(f"gcd({55}, {80}) = {gcd}")
+# print(f"55 * {x} + 80 * {y} = {55*x + 80*y}")
+```
+
 Hàm đệ quy trên trả về GCD và gán giá trị hệ số cho `x` và `y` (tham chiếu).
 
 Cài đặt này cho kết quả đúng cả với số nguyên âm.
@@ -77,6 +96,28 @@ int gcd(int a, int b, int& x, int& y) {
     }
     return a1;
 }
+```
+
+**Python:**
+```python
+def extended_gcd_iterative(a, b):
+    """Thuật toán Euclid mở rộng lặp"""
+    x, y = 1, 0
+    x1, y1 = 0, 1
+    a1, b1 = a, b
+    
+    while b1:
+        q = a1 // b1
+        x, x1 = x1, x - q * x1
+        y, y1 = y1, y - q * y1
+        a1, b1 = b1, a1 - q * b1
+    
+    return a1, x, y
+
+# Ví dụ sử dụng:
+# gcd, x, y = extended_gcd_iterative(55, 80)
+# print(f"gcd({55}, {80}) = {gcd}")
+# print(f"55 * {x} + 80 * {y} = {55*x + 80*y}")
 ```
 
 Nếu để ý, biến `a1` và `b1` nhận giá trị giống như trong thuật toán Euclid thông thường dạng lặp. Do đó, thuật toán chắc chắn tính đúng GCD.
