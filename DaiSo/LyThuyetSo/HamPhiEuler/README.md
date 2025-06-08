@@ -21,7 +21,7 @@ Các tính chất sau đây của hàm phi Euler đủ để tính toán nó cho
 3. **Nếu $a$ và $b$ nguyên tố cùng nhau**, thì:
    $$\phi(ab) = \phi(a) \cdot \phi(b)$$
 
-   Tính chất này không dễ nhận thấy. Nó xuất phát từ [Định lý thặng dư Trung Hoa](/CacBaiDocThuatToan/DaiSo/SoHocModule/DinhLySoDuTrungQuoc/README.md). Định lý thặng dư Trung Hoa đảm bảo rằng với mỗi $0 \leq x < a$ và mỗi $0 \leq y < b$, tồn tại duy nhất $0 \leq z < ab$ với $z \equiv x \pmod{a}$ và $z \equiv y \pmod{b}$. Không khó để chứng minh rằng $z$ nguyên tố cùng nhau với $ab$ khi và chỉ khi $x$ nguyên tố cùng nhau với $a$ và $y$ nguyên tố cùng nhau với $b$.
+   Tính chất này không dễ nhận thấy. Nó xuất phát từ [Định lý thặng dư Trung Hoa](/DaiSo/SoHocModule/DinhLySoDuTrungQuoc/README.md). Định lý thặng dư Trung Hoa đảm bảo rằng với mỗi $0 \leq x < a$ và mỗi $0 \leq y < b$, tồn tại duy nhất $0 \leq z < ab$ với $z \equiv x \pmod{a}$ và $z \equiv y \pmod{b}$. Không khó để chứng minh rằng $z$ nguyên tố cùng nhau với $ab$ khi và chỉ khi $x$ nguyên tố cùng nhau với $a$ và $y$ nguyên tố cùng nhau với $b$.
 
 4. **Tổng quát**, với $a$ và $b$ không nguyên tố cùng nhau:
    $$\phi(ab) = \phi(a) \cdot \phi(b) \cdot \frac{d}{\phi(d)}$$
