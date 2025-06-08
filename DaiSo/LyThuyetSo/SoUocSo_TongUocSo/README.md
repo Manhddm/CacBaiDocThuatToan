@@ -20,13 +20,13 @@ Một cách suy nghĩ về điều này như sau:
 
 * **Nếu có hai thừa số nguyên tố phân biệt** $n = p_1^{e_1} \cdot p_2^{e_2}$, thì bạn có thể sắp xếp tất cả các ước số dưới dạng một bảng.
 
-$$\begin{array}{c|ccccc} & 1 & p_2 & p_2^2 & \dots & p_2^{e_2} \\\\
-\hline 1 & 1 & p_2 & p_2^2 & \dots & p_2^{e_2} \\\\ 
-p_1 & p_1 & p_1 \cdot p_2 & p_1 \cdot p_2^2 & \dots & p_1 \cdot p_2^{e_2} \\\\ 
-p_1^2 & p_1^2 & p_1^2 \cdot p_2 & p_1^2 \cdot p_2^2 & \dots & p_1^2 \cdot p_2^{e_2} \\\\ 
-\vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\\\ 
-p_1^{e_1} & p_1^{e_1} & p_1^{e_1} \cdot p_2 & p_1^{e_1} \cdot p_2^2 & \dots & p_1^{e_1} \cdot p_2^{e_2} \\\\ 
-\end{array}$$
+|            | 1         | $p_2$         | $p_2^2$         | $\dots$      | $p_2^{e_2}$         |
+|------------|-----------|---------------|-----------------|--------------|---------------------|
+| 1          | 1         | $p_2$         | $p_2^2$         | $\dots$      | $p_2^{e_2}$         |
+| $p_1$      | $p_1$     | $p_1p_2$      | $p_1p_2^2$      | $\dots$      | $p_1p_2^{e_2}$      |
+| $p_1^2$    | $p_1^2$   | $p_1^2p_2$    | $p_1^2p_2^2$    | $\dots$      | $p_1^2p_2^{e_2}$    |
+| $\vdots$   | $\vdots$  | $\vdots$      | $\vdots$        | $\ddots$     | $\vdots$            |
+| $p_1^{e_1}$| $p_1^{e_1}$| $p_1^{e_1}p_2$| $p_1^{e_1}p_2^2$| $\dots$      | $p_1^{e_1}p_2^{e_2}$|
 
 Vì vậy, số ước số một cách hiển nhiên là $(e_1 + 1) \cdot (e_2 + 1)$.
 
