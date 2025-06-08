@@ -8,12 +8,12 @@
 
 Cho $m = m_1 \cdot m_2 \cdots m_k$, trong đó các $m_i$ nguyên tố cùng nhau từng đôi một. Ngoài các $m_i$, ta cũng được cho hệ phương trình đồng dư:
 
-$$\left\{\begin{array}{rcl} 
-a & \equiv & a_1 \pmod{m_1} \\ 
-a & \equiv & a_2 \pmod{m_2} \\ 
-& \vdots & \\ 
-a & \equiv & a_k \pmod{m_k} 
-\end{array}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $a \equiv a_1 \pmod{m_1}$ | |
+| $a \equiv a_2 \pmod{m_2}$ | |
+| $\vdots$ | |
+| $a \equiv a_k \pmod{m_k}$ | |
 
 trong đó $a_i$ là các hằng số cho trước. Định lý CRT phát biểu rằng hệ phương trình đồng dư này luôn có một và chỉ một nghiệm modulo $m$.
 
@@ -21,11 +21,11 @@ trong đó $a_i$ là các hằng số cho trước. Định lý CRT phát biểu
 
 Hệ phương trình đồng dư:
 
-$$\left\{\begin{array}{rcl} 
-a & \equiv & 2 \pmod{3} \\ 
-a & \equiv & 3 \pmod{5} \\ 
-a & \equiv & 2 \pmod{7} 
-\end{array}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $a \equiv 2 \pmod{3}$ | |
+| $a \equiv 3 \pmod{5}$ | |
+| $a \equiv 2 \pmod{7}$ | |
 
 có nghiệm $a = 23$ modulo $105$, vì $23 \bmod 3 = 2$, $23 \bmod 5 = 3$, và $23 \bmod 7 = 2$. Ta có thể viết tất cả nghiệm dưới dạng $23 + 105 \cdot k$ với $k \in \mathbb{Z}$.
 
@@ -37,11 +37,11 @@ $$x \equiv a \pmod{m}$$
 
 tương đương với hệ phương trình:
 
-$$\left\{\begin{array}{rcl} 
-x & \equiv & a_1 \pmod{m_1} \\ 
-& \vdots & \\ 
-x & \equiv & a_k \pmod{m_k} 
-\end{array}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $x \equiv a_1 \pmod{m_1}$ | |
+| $\vdots$ | |
+| $x \equiv a_k \pmod{m_k}$ | |
 
 (Như trên, giả sử $m = m_1 m_2 \cdots m_k$ và các $m_i$ nguyên tố cùng nhau từng đôi một).
 
@@ -49,10 +49,10 @@ x & \equiv & a_k \pmod{m_k}
 
 Xét hệ hai phương trình với $m_1, m_2$ nguyên tố cùng nhau:
 
-$$\left\{\begin{align} 
-a &\equiv a_1 \pmod{m_1} \\ 
-a &\equiv a_2 \pmod{m_2} 
-\end{align}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $a \equiv a_1 \pmod{m_1}$ | |
+| $a \equiv a_2 \pmod{m_2}$ | |
 
 Ta muốn tìm nghiệm cho $a \pmod{m_1 m_2}$. Sử dụng thuật toán Euclidean mở rộng, ta có thể tìm các hệ số Bézout $n_1, n_2$ sao cho:
 
@@ -362,71 +362,52 @@ Trong trường hợp các modulo không nguyên tố cùng nhau, hệ phương 
 
 Hệ sau không có nghiệm:
 
-$$\left\{\begin{align} 
-a & \equiv 1 \pmod{4} \\ 
-a & \equiv 2 \pmod{6}
-\end{align}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $a \equiv 1 \pmod{4}$ | |
+| $a \equiv 2 \pmod{6}$ | |
 
 Phương trình đồng dư đầu tiên ngụ ý nghiệm là số lẻ, và phương trình thứ hai ngụ ý nghiệm là số chẵn. Không thể có số vừa lẻ vừa chẵn, do đó không có nghiệm.
-
-### Phương pháp giải
-
-Việc xác định hệ có nghiệm hay không khá đơn giản. Và nếu có nghiệm, ta có thể sử dụng thuật toán gốc để giải hệ phương trình đồng dư đã được sửa đổi một chút.
-
-Một phương trình đồng dư $a \equiv a_i \pmod{m_i}$ tương đương với hệ phương trình đồng dư $a \equiv a_i \pmod{p_j^{n_j}}$ trong đó $p_1^{n_1} p_2^{n_2} \cdots p_k^{n_k}$ là phân tích thừa số nguyên tố của $m_i$.
 
 ### Ví dụ có nghiệm
 
 Hệ sau có nghiệm modulo $\text{lcm}(10, 12) = 60$:
 
-$$\left\{\begin{align} 
-a & \equiv 3 \pmod{10} \\ 
-a & \equiv 5 \pmod{12}
-\end{align}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $a \equiv 3 \pmod{10}$ | |
+| $a \equiv 5 \pmod{12}$ | |
 
 Hệ phương trình đồng dư này tương đương với:
 
-$$\left\{\begin{align} 
-a & \equiv 3 \equiv 1 \pmod{2} \\ 
-a & \equiv 3 \equiv 3 \pmod{5} \\ 
-a & \equiv 5 \equiv 1 \pmod{4} \\ 
-a & \equiv 5 \equiv 2 \pmod{3}
-\end{align}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $a \equiv 1 \pmod{2}$ | |
+| $a \equiv 3 \pmod{5}$ | |
+| $a \equiv 1 \pmod{4}$ | |
+| $a \equiv 2 \pmod{3}$ | |
 
 Các phương trình đồng dư duy nhất có cùng modulo nguyên tố là $a \equiv 1 \pmod{4}$ và $a \equiv 1 \pmod{2}$. Phương trình đầu đã ngụ ý phương trình thứ hai, nên ta có thể bỏ qua phương trình thứ hai và giải hệ với các modulo nguyên tố cùng nhau:
 
-$$\left\{\begin{align} 
-a & \equiv 3 \pmod{5} \\ 
-a & \equiv 1 \pmod{4} \\ 
-a & \equiv 2 \pmod{3}
-\end{align}\right.$$
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $a \equiv 3 \pmod{5}$ | |
+| $a \equiv 1 \pmod{4}$ | |
+| $a \equiv 2 \pmod{3}$ | |
 
 Nghiệm là $53 \pmod{60}$, và thực sự $53 \bmod 10 = 3$ và $53 \bmod 12 = 5$.
-
-## Thuật toán Garner
-
-Một hệ quả khác của CRT là ta có thể biểu diễn các số lớn bằng mảng các số nguyên nhỏ.
-
-Thay vì thực hiện nhiều phép tính với các số rất lớn, có thể tốn kém (hãy nghĩ đến việc thực hiện phép chia với các số có 1000 chữ số), bạn có thể chọn một vài modulo nguyên tố cùng nhau và biểu diễn số lớn dưới dạng hệ phương trình đồng dư, và thực hiện tất cả các phép toán trên hệ phương trình. Bất kỳ số $a$ nào nhỏ hơn $m_1 m_2 \cdots m_k$ đều có thể được biểu diễn dưới dạng mảng $a_1, \ldots, a_k$, trong đó $a \equiv a_i \pmod{m_i}$.
-
-Bằng cách sử dụng thuật toán trên, bạn có thể khôi phục lại số lớn bất cứ khi nào cần.
-
-Hoặc bạn có thể biểu diễn số trong hệ cơ số hỗn hợp:
-
-$$a = x_1 + x_2 m_1 + x_3 m_1 m_2 + \ldots + x_k m_1 \cdots m_{k-1} \text{ với }x_i \in [0, m_i)$$
-
-Thuật toán Garner, được thảo luận trong bài viết chuyên biệt về thuật toán Garner, tính toán các hệ số $x_i$. Và với những hệ số đó, bạn có thể khôi phục lại số đầy đủ.
 
 ## Ví dụ minh họa
 
 ### Ví dụ 1: Hệ ba phương trình
 
 Giải hệ:
-$$\left\{\begin{array}{rcl} 
-x & \equiv & 2 \pmod{3} \\ 
-x & \equiv & 3 \pmod{5} \\ 
-x & \equiv & 2 \pmod{7} 
-\end{array}\right.$$
+
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $x \equiv 2 \pmod{3}$ | |
+| $x \equiv 3 \pmod{5}$ | |
+| $x \equiv 2 \pmod{7}$ | |
 
 **Phương pháp xây dựng trực tiếp:**
 - $M = 3 \times 5 \times 7 = 105$
@@ -439,21 +420,23 @@ $x = 2 \times 35 \times 2 + 3 \times 21 \times 1 + 2 \times 15 \times 1 = 140 + 
 ### Ví dụ 2: Modulo không nguyên tố cùng nhau
 
 Giải hệ:
-$$\left\{\begin{array}{rcl} 
-x & \equiv & 3 \pmod{10} \\ 
-x & \equiv & 5 \pmod{12} 
-\end{array}\right.$$
+
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $x \equiv 3 \pmod{10}$ | |
+| $x \equiv 5 \pmod{12}$ | |
 
 Phân tích:
 - $10 = 2 \times 5$ → $x \equiv 1 \pmod{2}$, $x \equiv 3 \pmod{5}$
 - $12 = 4 \times 3$ → $x \equiv 1 \pmod{4}$, $x \equiv 2 \pmod{3}$
 
 Vì $x \equiv 1 \pmod{4}$ ngụ ý $x \equiv 1 \pmod{2}$, ta giải:
-$$\left\{\begin{array}{rcl} 
-x & \equiv & 3 \pmod{5} \\ 
-x & \equiv & 1 \pmod{4} \\ 
-x & \equiv & 2 \pmod{3} 
-\end{array}\right.$$
+
+| Phương trình | Điều kiện |
+|--------------|-----------|
+| $x \equiv 3 \pmod{5}$ | |
+| $x \equiv 1 \pmod{4}$ | |
+| $x \equiv 2 \pmod{3}$ | |
 
 Kết quả: $x = 53 \pmod{60}$
 
