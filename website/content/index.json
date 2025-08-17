@@ -1,0 +1,202 @@
+{
+  "categories": {
+    "data-structures": {
+      "title": "🏗️ Cấu Trúc Dữ Liệu",
+      "description": "Các cấu trúc dữ liệu cơ bản và nâng cao",
+      "subcategories": {
+        "basic": {
+          "title": "Nguyên Lý Cơ Bản",
+          "articles": {
+            "stack-queue": {
+              "title": "Ngăn Xếp & Hàng Đợi Tùy Biến",
+              "description": "Cách sửa đổi ngăn xếp và hàng đợi để tìm phần tử nhỏ nhất trong O(1)",
+              "difficulty": "Trung bình",
+              "timeToRead": "15 phút"
+            },
+            "sparse-table": {
+              "title": "Sparse Table",
+              "description": "Cấu trúc dữ liệu để truy vấn RMQ trong O(1)",
+              "difficulty": "Nâng cao",
+              "timeToRead": "20 phút"
+            }
+          }
+        },
+        "trees": {
+          "title": "Cây",
+          "articles": {
+            "dsu": {
+              "title": "Disjoint Set Union",
+              "description": "Cấu trúc dữ liệu để quản lý các tập hợp rời rạc",
+              "difficulty": "Trung bình",
+              "timeToRead": "18 phút"
+            },
+            "fenwick": {
+              "title": "Fenwick Tree (Binary Indexed Tree)",
+              "description": "Cấu trúc dữ liệu cho truy vấn tổng đoạn",
+              "difficulty": "Trung bình",
+              "timeToRead": "25 phút"
+            },
+            "segment": {
+              "title": "Segment Tree",
+              "description": "Cây phân đoạn cho các truy vấn phạm vi",
+              "difficulty": "Nâng cao",
+              "timeToRead": "30 phút"
+            },
+            "sqrt": {
+              "title": "Sqrt Decomposition",
+              "description": "Kỹ thuật phân tách căn bậc hai",
+              "difficulty": "Trung bình",
+              "timeToRead": "22 phút"
+            }
+          }
+        }
+      }
+    },
+    "algebra": {
+      "title": "🔢 Đại Số",
+      "description": "Các thuật toán đại số và số học",
+      "subcategories": {
+        "basics": {
+          "title": "Nguyên Tắc Cơ Bản",
+          "articles": {
+            "fibonacci": {
+              "title": "Dãy Số Fibonacci",
+              "description": "Các phương pháp tính số Fibonacci hiệu quả",
+              "difficulty": "Cơ bản",
+              "timeToRead": "12 phút"
+            },
+            "binary-exp": {
+              "title": "Lũy Thừa Nhị Phân",
+              "description": "Tính lũy thừa trong thời gian logarit",
+              "difficulty": "Cơ bản",
+              "timeToRead": "10 phút"
+            },
+            "extended-gcd": {
+              "title": "Thuật Toán Euclid Mở Rộng",
+              "description": "Tìm hệ số Bézout và ứng dụng",
+              "difficulty": "Trung bình",
+              "timeToRead": "16 phút"
+            },
+            "gcd": {
+              "title": "Thuật Toán Euclid",
+              "description": "Tìm ước chung lớn nhất của hai số",
+              "difficulty": "Cơ bản",
+              "timeToRead": "8 phút"
+            },
+            "linear-diophantine": {
+              "title": "Phương Trình Diophantine Tuyến Tính",
+              "description": "Giải phương trình Diophantine dạng ax + by = c",
+              "difficulty": "Trung bình",
+              "timeToRead": "20 phút"
+            }
+          }
+        },
+        "number-theory": {
+          "title": "Lý Thuyết Số",
+          "articles": {
+            "euler-phi": {
+              "title": "Hàm Phi Euler",
+              "description": "Đếm số các số nguyên tố cùng nhau",
+              "difficulty": "Trung bình",
+              "timeToRead": "18 phút"
+            },
+            "divisors": {
+              "title": "Số Ước Số & Tổng Ước Số",
+              "description": "Tính toán các hàm số học cơ bản",
+              "difficulty": "Trung bình",
+              "timeToRead": "15 phút"
+            }
+          }
+        },
+        "modular": {
+          "title": "Số Học Module",
+          "articles": {
+            "discrete-root": {
+              "title": "Căn Bậc Rời Rạc",
+              "description": "Tìm nghiệm của phương trình x^k ≡ a (mod n)",
+              "difficulty": "Nâng cao",
+              "timeToRead": "25 phút"
+            },
+            "primitive-root": {
+              "title": "Căn Nguyên Thủy",
+              "description": "Tìm generator của nhóm nhân modulo",
+              "difficulty": "Nâng cao",
+              "timeToRead": "22 phút"
+            },
+            "chinese-remainder": {
+              "title": "Định Lý Số Dư Trung Quốc",
+              "description": "Giải hệ phương trình đồng dư",
+              "difficulty": "Nâng cao",
+              "timeToRead": "20 phút"
+            },
+            "factorial-mod": {
+              "title": "Giai Thừa Modulo",
+              "description": "Tính n! mod p hiệu quả",
+              "difficulty": "Nâng cao",
+              "timeToRead": "18 phút"
+            },
+            "discrete-log": {
+              "title": "Logarit Rời Rạc",
+              "description": "Giải phương trình a^x ≡ b (mod n)",
+              "difficulty": "Nâng cao",
+              "timeToRead": "23 phút"
+            },
+            "modular-inverse": {
+              "title": "Nghịch Đảo Modular",
+              "description": "Tìm nghịch đảo của số trong modular arithmetic",
+              "difficulty": "Trung bình",
+              "timeToRead": "14 phút"
+            },
+            "montgomery": {
+              "title": "Nhân Montgomery",
+              "description": "Thuật toán nhân hiệu quả trong modular arithmetic",
+              "difficulty": "Nâng cao",
+              "timeToRead": "28 phút"
+            },
+            "linear-congruence": {
+              "title": "Phương Trình Đồng Dư Tuyến Tính",
+              "description": "Giải phương trình ax ≡ b (mod n)",
+              "difficulty": "Trung bình",
+              "timeToRead": "16 phút"
+            },
+            "garner": {
+              "title": "Thuật Toán Garner",
+              "description": "Cài đặt định lý số dư Trung Quốc",
+              "difficulty": "Nâng cao",
+              "timeToRead": "24 phút"
+            }
+          }
+        },
+        "primes": {
+          "title": "Số Nguyên Tố",
+          "articles": {
+            "primality-test": {
+              "title": "Kiểm Tra Số Nguyên Tố",
+              "description": "Các thuật toán kiểm tra tính nguyên tố",
+              "difficulty": "Trung bình",
+              "timeToRead": "17 phút"
+            },
+            "factorization": {
+              "title": "Phân Tích Thừa Số Nguyên",
+              "description": "Thuật toán phân tích số thành thừa số nguyên tố",
+              "difficulty": "Nâng cao",
+              "timeToRead": "22 phút"
+            },
+            "sieve-eratosthenes": {
+              "title": "Sàng Eratosthenes",
+              "description": "Tìm tất cả số nguyên tố nhỏ hơn n",
+              "difficulty": "Cơ bản",
+              "timeToRead": "12 phút"
+            },
+            "linear-sieve": {
+              "title": "Sàng Tuyến Tính",
+              "description": "Sàng số nguyên tố với độ phức tạp O(n)",
+              "difficulty": "Trung bình",
+              "timeToRead": "18 phút"
+            }
+          }
+        }
+      }
+    }
+  }
+}

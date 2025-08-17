@@ -1,0 +1,158 @@
+{
+  "title": "Ngăn Xếp & Hàng Đợi Tùy Biến",
+  "category": "Cấu Trúc Dữ Liệu",
+  "subcategory": "Nguyên Lý Cơ Bản",
+  "difficulty": "Trung bình",
+  "timeToRead": "15 phút",
+  "tags": ["stack", "queue", "minimum", "data-structure"],
+  "lastUpdated": "2025-08-17",
+  "content": {
+    "introduction": {
+      "title": "Giới thiệu",
+      "text": "Trong bài viết này, chúng ta sẽ xét ba vấn đề quan trọng về việc tối ưu hóa các cấu trúc dữ liệu cơ bản:",
+      "points": [
+        "Sửa đổi ngăn xếp (stack) để có thể tìm phần tử nhỏ nhất trong $O(1)$",
+        "Sửa đổi hàng đợi (queue) để làm điều tương tự", 
+        "Ứng dụng các cấu trúc này để tìm giá trị nhỏ nhất trên mọi đoạn con độ dài cố định của một mảng trong $O(n)$"
+      ]
+    },
+    "sections": [
+      {
+        "title": "1. Sửa đổi ngăn xếp (Minimum Stack)",
+        "content": [
+          {
+            "type": "text",
+            "content": "Ta muốn sửa đổi ngăn xếp sao cho có thể truy xuất phần tử nhỏ nhất trong ngăn xếp trong $O(1)$, đồng thời các thao tác thêm/xóa vẫn giữ nguyên độ phức tạp."
+          },
+          {
+            "type": "subtitle",
+            "content": "Ý tưởng"
+          },
+          {
+            "type": "text",
+            "content": "Thay vì chỉ lưu giá trị, ta lưu cặp `(giá trị, giá trị nhỏ nhất từ vị trí này trở xuống)`."
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "stack<pair<int, int>> st;"
+          },
+          {
+            "type": "operations",
+            "title": "Các thao tác:",
+            "operations": [
+              {
+                "name": "Thêm phần tử",
+                "code": "int new_min = st.empty() ? new_elem : min(new_elem, st.top().second);\nst.push({new_elem, new_min});"
+              },
+              {
+                "name": "Xóa phần tử", 
+                "code": "int removed_element = st.top().first;\nst.pop();"
+              },
+              {
+                "name": "Lấy giá trị nhỏ nhất",
+                "code": "int minimum = st.top().second;"
+              }
+            ]
+          },
+          {
+            "type": "complexity",
+            "content": "Tất cả các thao tác đều $O(1)$."
+          }
+        ]
+      },
+      {
+        "title": "2. Sửa đổi hàng đợi (Minimum Queue)",
+        "content": [
+          {
+            "type": "subtitle",
+            "content": "Phương pháp 1: Lưu trữ giá trị cần thiết"
+          },
+          {
+            "type": "text",
+            "content": "Ta chỉ lưu các phần tử cần thiết để xác định giá trị nhỏ nhất, đảm bảo hàng đợi luôn không giảm dần từ đầu đến cuối."
+          },
+          {
+            "type": "operations",
+            "title": "Các thao tác:",
+            "operations": [
+              {
+                "name": "Thêm phần tử",
+                "description": "Loại bỏ các phần tử cuối lớn hơn phần tử mới, sau đó thêm phần tử mới vào cuối.",
+                "code": "deque<int> q;\nwhile (!q.empty() && q.back() > new_element)\n    q.pop_back();\nq.push_back(new_element);"
+              },
+              {
+                "name": "Xóa phần tử",
+                "description": "Nếu phần tử đầu bằng phần tử cần xóa, loại bỏ nó.",
+                "code": "if (!q.empty() && q.front() == remove_element)\n    q.pop_front();"
+              },
+              {
+                "name": "Lấy giá trị nhỏ nhất",
+                "code": "int minimum = q.front();"
+              }
+            ]
+          },
+          {
+            "type": "complexity",
+            "content": "Mỗi phần tử chỉ bị thêm và xóa tối đa một lần, nên tổng thời gian là $O(1)$ trung bình cho mỗi thao tác."
+          },
+          {
+            "type": "subtitle",
+            "content": "Phương pháp 2: Lưu chỉ số"
+          },
+          {
+            "type": "text",
+            "content": "Khi không biết giá trị phần tử cần xóa, ta lưu thêm chỉ số cho mỗi phần tử."
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "deque<pair<int, int>> q;\nint cnt_added = 0;\nint cnt_removed = 0;\n\n// Thêm phần tử\nwhile (!q.empty() && q.back().first > new_element)\n    q.pop_back();\nq.push_back({new_element, cnt_added});\ncnt_added++;\n\n// Xóa phần tử\nif (!q.empty() && q.front().second == cnt_removed)\n    q.pop_front();\ncnt_removed++;\n\n// Lấy giá trị nhỏ nhất\nint minimum = q.front().first;"
+          }
+        ]
+      },
+      {
+        "title": "3. Ứng dụng: Tìm giá trị nhỏ nhất trên đoạn con",
+        "content": [
+          {
+            "type": "problem",
+            "content": "Cho mảng $A$ độ dài $N$ và số $M \\le N$. Hãy tìm giá trị nhỏ nhất trên mọi đoạn con liên tiếp độ dài $M$:"
+          },
+          {
+            "type": "formula",
+            "content": "$$\\min_{0 \\le i \\le M-1} A[i], \\min_{1 \\le i \\le M} A[i], \\ldots, \\min_{N-M \\le i \\le N-1} A[i]$$"
+          },
+          {
+            "type": "algorithm",
+            "steps": [
+              "Thêm $M$ phần tử đầu vào hàng đợi, lấy giá trị nhỏ nhất",
+              "Với mỗi phần tử tiếp theo, thêm vào hàng đợi, loại bỏ phần tử đầu, lấy giá trị nhỏ nhất"
+            ]
+          },
+          {
+            "type": "complexity",
+            "content": "Tổng thời gian: $O(n)$"
+          }
+        ]
+      }
+    ],
+    "exercises": [
+      {
+        "title": "Queries with Fixed Length",
+        "platform": "HackerRank", 
+        "url": "https://www.hackerrank.com/challenges/queries-with-fixed-length/problem"
+      },
+      {
+        "title": "Binary Land",
+        "platform": "CodeChef",
+        "url": "https://www.codechef.com/MAY20A/problems/BINLAND"
+      }
+    ],
+    "references": [
+      {
+        "title": "CP-Algorithms - Stack queue modification",
+        "url": "https://cp-algorithms.com/data_structures/stack_queue_modification.html"
+      }
+    ]
+  }
+}

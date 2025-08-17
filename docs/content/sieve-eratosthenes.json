@@ -1,0 +1,176 @@
+{
+  "title": "Sàng Eratosthenes",
+  "category": "Đại Số",
+  "subcategory": "Số Nguyên Tố",
+  "difficulty": "Cơ bản",
+  "timeToRead": "12 phút",
+  "tags": ["sieve", "primes", "eratosthenes", "number-theory"],
+  "lastUpdated": "2025-08-17",
+  "content": {
+    "introduction": {
+      "title": "Giới thiệu",
+      "text": "Sàng Eratosthenes là một thuật toán cổ điển để tìm tất cả các số nguyên tố nhỏ hơn hoặc bằng một số $n$ cho trước.",
+      "note": "Thuật toán này được đặt tên theo nhà toán học Hy Lạp cổ đại Eratosthenes (276-194 TCN)."
+    },
+    "sections": [
+      {
+        "title": "Ý tưởng thuật toán",
+        "content": [
+          {
+            "type": "text",
+            "content": "Ý tưởng của sàng Eratosthenes rất đơn giản:"
+          },
+          {
+            "type": "algorithm",
+            "steps": [
+              "Tạo một danh sách các số từ 2 đến n",
+              "Bắt đầu với số nguyên tố đầu tiên p = 2",
+              "Đánh dấu tất cả các bội số của p (trừ chính p) là hợp số",
+              "Tìm số tiếp theo chưa bị đánh dấu, đó là số nguyên tố tiếp theo",
+              "Lặp lại cho đến khi p² > n"
+            ]
+          },
+          {
+            "type": "text",
+            "content": "Tại sao chỉ cần kiểm tra đến $p^2 \\leq n$? Vì mọi hợp số $k \\leq n$ đều có ít nhất một ước nguyên tố $\\leq \\sqrt{n}$."
+          }
+        ]
+      },
+      {
+        "title": "Cài đặt cơ bản",
+        "content": [
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "vector<bool> sieve(int n) {\n    vector<bool> is_prime(n + 1, true);\n    is_prime[0] = is_prime[1] = false;\n    \n    for (int i = 2; i * i <= n; i++) {\n        if (is_prime[i]) {\n            for (int j = i * i; j <= n; j += i) {\n                is_prime[j] = false;\n            }\n        }\n    }\n    \n    return is_prime;\n}"
+          },
+          {
+            "type": "text",
+            "content": "Một số tối ưu quan trọng:"
+          },
+          {
+            "type": "text",
+            "content": "• Bắt đầu đánh dấu từ $i^2$ vì các bội số nhỏ hơn đã được đánh dấu bởi các số nguyên tố trước đó"
+          },
+          {
+            "type": "text",
+            "content": "• Chỉ cần kiểm tra đến $\\sqrt{n}$"
+          }
+        ]
+      },
+      {
+        "title": "Tối ưu hóa",
+        "content": [
+          {
+            "type": "subtitle",
+            "content": "Sàng chỉ số lẻ"
+          },
+          {
+            "type": "text",
+            "content": "Vì tất cả số chẵn > 2 đều là hợp số, ta có thể chỉ sàng các số lẻ:"
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "vector<bool> sieve_odd(int n) {\n    vector<bool> is_prime((n + 1) / 2, true);\n    is_prime[0] = false; // 1 không phải số nguyên tố\n    \n    for (int i = 3; i * i <= n; i += 2) {\n        if (is_prime[i / 2]) {\n            for (int j = i * i; j <= n; j += 2 * i) {\n                is_prime[j / 2] = false;\n            }\n        }\n    }\n    \n    return is_prime;\n}"
+          },
+          {
+            "type": "subtitle",
+            "content": "Sàng phân đoạn"
+          },
+          {
+            "type": "text",
+            "content": "Để tìm số nguyên tố trong đoạn $[L, R]$ với $R - L$ nhỏ, ta có thể sử dụng sàng phân đoạn:"
+          },
+          {
+            "type": "algorithm",
+            "steps": [
+              "Tìm tất cả số nguyên tố đến $\\sqrt{R}$ bằng sàng thông thường",
+              "Sử dụng các số nguyên tố này để sàng đoạn [L, R]"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Độ phức tạp",
+        "content": [
+          {
+            "type": "complexity",
+            "content": "Thời gian: $O(n \\log \\log n)$ - Không gian: $O(n)$"
+          },
+          {
+            "type": "text",
+            "content": "Độ phức tạp thời gian có thể được chứng minh bằng cách nhận xét rằng mỗi số $k$ được \"loại bỏ\" bởi mỗi ước nguyên tố của nó."
+          }
+        ]
+      },
+      {
+        "title": "Ứng dụng",
+        "content": [
+          {
+            "type": "text",
+            "content": "Sàng Eratosthenes không chỉ tìm số nguyên tố mà còn có thể được mở rộng để:"
+          },
+          {
+            "type": "text",
+            "content": "• Tìm ước nguyên tố nhỏ nhất của mỗi số"
+          },
+          {
+            "type": "text",
+            "content": "• Đếm số lượng ước nguyên tố của mỗi số"
+          },
+          {
+            "type": "text",
+            "content": "• Tính hàm Euler phi φ(n) cho tất cả số đến n"
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "// Tìm ước nguyên tố nhỏ nhất\nvector<int> smallest_factor(int n) {\n    vector<int> spf(n + 1);\n    for (int i = 1; i <= n; i++) spf[i] = i;\n    \n    for (int i = 2; i * i <= n; i++) {\n        if (spf[i] == i) { // i là số nguyên tố\n            for (int j = i * i; j <= n; j += i) {\n                if (spf[j] == j) spf[j] = i;\n            }\n        }\n    }\n    \n    return spf;\n}"
+          }
+        ]
+      }
+    ],
+    "exercises": [
+      {
+        "title": "Prime Numbers",
+        "platform": "SPOJ",
+        "url": "https://www.spoj.com/problems/PRIME1/"
+      },
+      {
+        "title": "Goldbach's Conjecture",
+        "platform": "UVA 543",
+        "url": "https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=484"
+      },
+      {
+        "title": "Counting Primes",
+        "platform": "LeetCode 204",
+        "url": "https://leetcode.com/problems/counting-primes/"
+      }
+    ],
+    "applications": [
+      {
+        "title": "Factorization",
+        "description": "Sử dụng để phân tích thừa số nguyên tố nhanh chóng"
+      },
+      {
+        "title": "Cryptography",
+        "description": "Tạo các số nguyên tố lớn cho mã hóa RSA"
+      },
+      {
+        "title": "Number Theory",
+        "description": "Tính các hàm số học như φ(n), τ(n), σ(n)"
+      }
+    ],
+    "references": [
+      {
+        "title": "CP-Algorithms - Sieve of Eratosthenes",
+        "url": "https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html"
+      },
+      {
+        "title": "Wikipedia - Sieve of Eratosthenes",
+        "url": "https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes"
+      }
+    ]
+  }
+}

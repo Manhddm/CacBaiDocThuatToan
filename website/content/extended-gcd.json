@@ -1,0 +1,180 @@
+{
+  "title": "Thuật Toán Euclid Mở Rộng",
+  "category": "Đại Số",
+  "subcategory": "Nguyên Tắc Cơ Bản", 
+  "difficulty": "Trung bình",
+  "timeToRead": "16 phút",
+  "tags": ["gcd", "extended-euclidean", "bezout", "modular-inverse"],
+  "lastUpdated": "2025-08-17",
+  "content": {
+    "introduction": {
+      "title": "Ý nghĩa",
+      "text": "Thuật toán Euclid thông thường chỉ tính được ước chung lớn nhất (GCD) của hai số nguyên $a$ và $b$. Phiên bản mở rộng còn tìm được cách biểu diễn GCD dưới dạng tổ hợp tuyến tính của $a$ và $b$, tức là tìm các hệ số $x$ và $y$ sao cho:",
+      "formula": "$$a \\cdot x + b \\cdot y = \\gcd(a, b)$$",
+      "note": "Theo định lý Bézout, luôn tồn tại các hệ số như vậy."
+    },
+    "sections": [
+      {
+        "title": "Ví dụ minh họa",
+        "content": [
+          {
+            "type": "example",
+            "content": "Với $\\gcd(55, 80) = 5$, ta có thể biểu diễn:",
+            "formula": "$$55 \\cdot 3 + 80 \\cdot (-2) = 5$$"
+          }
+        ]
+      },
+      {
+        "title": "Thuật toán",
+        "content": [
+          {
+            "type": "text",
+            "content": "Ký hiệu $g$ là GCD của $a$ và $b$. So với thuật toán Euclid gốc, thay đổi rất đơn giản."
+          },
+          {
+            "type": "text", 
+            "content": "Khi thuật toán kết thúc với $b = 0$ và $a = g$, ta dễ dàng tìm được hệ số: $g \\cdot 1 + 0 \\cdot 0 = g$."
+          },
+          {
+            "type": "text",
+            "content": "Bắt đầu từ các hệ số $(x, y) = (1, 0)$, ta đi ngược lại qua các lần gọi đệ quy."
+          },
+          {
+            "type": "derivation",
+            "title": "Công thức chuyển đổi",
+            "steps": [
+              "Giả sử ta đã tìm được hệ số $(x_1, y_1)$ cho $(b, a \\bmod b)$:",
+              "$$b \\cdot x_1 + (a \\bmod b) \\cdot y_1 = g$$",
+              "Ta muốn tìm cặp $(x, y)$ cho $(a, b)$:",
+              "$$a \\cdot x + b \\cdot y = g$$",
+              "Biểu diễn $a \\bmod b$:",
+              "$$a \\bmod b = a - \\left\\lfloor \\frac{a}{b} \\right\\rfloor \\cdot b$$",
+              "Thay vào phương trình:",
+              "$$g = b \\cdot x_1 + \\left(a - \\left\\lfloor \\frac{a}{b} \\right\\rfloor \\cdot b\\right) \\cdot y_1$$",
+              "$$g = a \\cdot y_1 + b \\cdot \\left(x_1 - y_1 \\cdot \\left\\lfloor \\frac{a}{b} \\right\\rfloor\\right)$$"
+            ],
+            "result": "$$\\begin{cases} x = y_1 \\\\ y = x_1 - y_1 \\cdot \\left\\lfloor \\frac{a}{b} \\right\\rfloor \\end{cases}$$"
+          }
+        ]
+      },
+      {
+        "title": "Cài đặt",
+        "content": [
+          {
+            "type": "subtitle",
+            "content": "Phiên bản đệ quy (C++)"
+          },
+          {
+            "type": "code",
+            "language": "cpp", 
+            "content": "int gcd(int a, int b, int& x, int& y) {\n    if (b == 0) {\n        x = 1;\n        y = 0;\n        return a;\n    }\n    int x1, y1;\n    int d = gcd(b, a % b, x1, y1);\n    x = y1;\n    y = x1 - y1 * (a / b);\n    return d;\n}"
+          },
+          {
+            "type": "subtitle",
+            "content": "Phiên bản Python"
+          },
+          {
+            "type": "code",
+            "language": "python",
+            "content": "def extended_gcd(a, b):\n    \"\"\"Thuật toán Euclid mở rộng đệ quy\"\"\"\n    if b == 0:\n        return a, 1, 0\n    \n    gcd, x1, y1 = extended_gcd(b, a % b)\n    x = y1\n    y = x1 - (a // b) * y1\n    \n    return gcd, x, y\n\n# Ví dụ sử dụng:\n# gcd, x, y = extended_gcd(55, 80)\n# print(f\"gcd({55}, {80}) = {gcd}\")\n# print(f\"55 * {x} + 80 * {y} = {55*x + 80*y}\")"
+          },
+          {
+            "type": "note",
+            "content": "Hàm đệ quy trên trả về GCD và gán giá trị hệ số cho `x` và `y` (tham chiếu). Cài đặt này cho kết quả đúng cả với số nguyên âm."
+          }
+        ]
+      },
+      {
+        "title": "Phiên bản lặp (Iterative)",
+        "content": [
+          {
+            "type": "text",
+            "content": "Có thể viết thuật toán Euclid mở rộng dưới dạng lặp. Nhờ tránh đệ quy, mã sẽ chạy nhanh hơn một chút."
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "int gcd(int a, int b, int& x, int& y) {\n    x = 1, y = 0;\n    int x1 = 0, y1 = 1, a1 = a, b1 = b;\n    while (b1) {\n        int q = a1 / b1;\n        tie(x, x1) = make_tuple(x1, x - q * x1);\n        tie(y, y1) = make_tuple(y1, y - q * y1);\n        tie(a1, b1) = make_tuple(b1, a1 - q * b1);\n    }\n    return a1;\n}"
+          },
+          {
+            "type": "code",
+            "language": "python",
+            "content": "def extended_gcd_iterative(a, b):\n    \"\"\"Thuật toán Euclid mở rộng lặp\"\"\"\n    x, y = 1, 0\n    x1, y1 = 0, 1\n    a1, b1 = a, b\n    \n    while b1:\n        q = a1 // b1\n        x, x1 = x1, x - q * x1\n        y, y1 = y1, y - q * y1\n        a1, b1 = b1, a1 - q * b1\n    \n    return a1, x, y"
+          }
+        ]
+      },
+      {
+        "title": "Chứng minh tính đúng đắn",
+        "content": [
+          {
+            "type": "text",
+            "content": "Nếu để ý, biến `a1` và `b1` nhận giá trị giống như trong thuật toán Euclid thông thường dạng lặp. Do đó, thuật toán chắc chắn tính đúng GCD."
+          },
+          {
+            "type": "text",
+            "content": "Để thấy thuật toán tính đúng hệ số, hãy xét các bất biến sau (trước vòng lặp và sau mỗi vòng lặp):"
+          },
+          {
+            "type": "invariants",
+            "content": [
+              "$$x \\cdot a + y \\cdot b = a_1$$",
+              "$$x_1 \\cdot a + y_1 \\cdot b = b_1$$"
+            ]
+          },
+          {
+            "type": "text",
+            "content": "Sau mỗi vòng lặp, các biến cập nhật như sau (với $q = \\frac{a_1}{b_1}$):"
+          },
+          {
+            "type": "updates",
+            "content": [
+              "$$a_1' = b_1$$",
+              "$$b_1' = a_1 - q \\cdot b_1$$"
+            ]
+          },
+          {
+            "type": "conclusion",
+            "content": "Từ đó, các hệ số cũng cập nhật đúng để bảo toàn bất biến. Kết thúc, $a_1$ chứa GCD, nên $x \\cdot a + y \\cdot b = g$."
+          }
+        ]
+      }
+    ],
+    "exercises": [
+      {
+        "title": "Euclid Problem",
+        "platform": "UVA 10104",
+        "url": "https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045"
+      },
+      {
+        "title": "Once Upon A Time",
+        "platform": "GYM (J)",
+        "url": "#"
+      },
+      {
+        "title": "Gift Dilemma", 
+        "platform": "UVA 12775",
+        "url": "https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628"
+      }
+    ],
+    "applications": [
+      {
+        "title": "Tìm nghịch đảo modular",
+        "description": "Sử dụng để tìm $x$ sao cho $a \\cdot x \\equiv 1 \\pmod{m}$"
+      },
+      {
+        "title": "Giải phương trình Diophantine",
+        "description": "Tìm nghiệm nguyên của phương trình $ax + by = c$"
+      },
+      {
+        "title": "Định lý số dư Trung Quốc",
+        "description": "Giải hệ phương trình đồng dư"
+      }
+    ],
+    "references": [
+      {
+        "title": "CP-Algorithms - Extended Euclidean Algorithm",
+        "url": "https://cp-algorithms.com/algebra/extended-euclid-algorithm.html"
+      }
+    ]
+  }
+}

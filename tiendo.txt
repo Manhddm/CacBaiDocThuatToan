@@ -1,2 +1,0 @@
-phần đại số: số học mô đun còn number system, miscellaneous 
-trees: đến segment tree

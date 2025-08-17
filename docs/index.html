@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các Bài Đọc Thuật Toán</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
+    </script>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <h2>📚 Thuật Toán</h2>
+        </div>
+        
+        <div class="nav-section">
+            <h3>🏗️ Cấu Trúc Dữ Liệu</h3>
+            <div class="nav-subsection">
+                <h4>Nguyên Lý Cơ Bản</h4>
+                <ul>
+                    <li><a href="#" onclick="loadArticle('stack-queue')">Ngăn Xếp & Hàng Đợi Tùy Biến</a></li>
+                    <li><a href="#" onclick="loadArticle('sparse-table')">Sparse Table</a></li>
+                </ul>
+            </div>
+            <div class="nav-subsection">
+                <h4>Trees</h4>
+                <ul>
+                    <li><a href="#" onclick="loadArticle('dsu')">Disjoint Set Union</a></li>
+                    <li><a href="#" onclick="loadArticle('fenwick')">Fenwick Tree</a></li>
+                    <li><a href="#" onclick="loadArticle('segment')">Segment Tree</a></li>
+                    <li><a href="#" onclick="loadArticle('sqrt')">Sqrt Decomposition</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="nav-section">
+            <h3>🔢 Đại Số</h3>
+            <div class="nav-subsection">
+                <h4>Nguyên Tắc Cơ Bản</h4>
+                <ul>
+                    <li><a href="#" onclick="loadArticle('fibonacci')">Dãy Số Fibonacci</a></li>
+                    <li><a href="#" onclick="loadArticle('binary-exp')">Lũy Thừa Nhị Phân</a></li>
+                    <li><a href="#" onclick="loadArticle('extended-gcd')">Thuật Toán Euclid Mở Rộng</a></li>
+                    <li><a href="#" onclick="loadArticle('gcd')">Thuật Toán Euclid</a></li>
+                    <li><a href="#" onclick="loadArticle('linear-diophantine')">Phương Trình Diophantine Tuyến Tính</a></li>
+                </ul>
+            </div>
+            <div class="nav-subsection">
+                <h4>Lý Thuyết Số</h4>
+                <ul>
+                    <li><a href="#" onclick="loadArticle('euler-phi')">Hàm Phi Euler</a></li>
+                    <li><a href="#" onclick="loadArticle('divisors')">Số Ước Số & Tổng Ước Số</a></li>
+                </ul>
+            </div>
+            <div class="nav-subsection">
+                <h4>Số Học Module</h4>
+                <ul>
+                    <li><a href="#" onclick="loadArticle('discrete-root')">Căn Bậc Rời Rạc</a></li>
+                    <li><a href="#" onclick="loadArticle('primitive-root')">Căn Nguyên Thủy</a></li>
+                    <li><a href="#" onclick="loadArticle('chinese-remainder')">Định Lý Số Dư Trung Quốc</a></li>
+                    <li><a href="#" onclick="loadArticle('factorial-mod')">Giai Thừa Modulo</a></li>
+                    <li><a href="#" onclick="loadArticle('discrete-log')">Logarit Rời Rạc</a></li>
+                    <li><a href="#" onclick="loadArticle('modular-inverse')">Nghịch Đảo Modular</a></li>
+                    <li><a href="#" onclick="loadArticle('montgomery')">Nhân Montgomery</a></li>
+                    <li><a href="#" onclick="loadArticle('linear-congruence')">Phương Trình Đồng Dư Tuyến Tính</a></li>
+                    <li><a href="#" onclick="loadArticle('garner')">Thuật Toán Garner</a></li>
+                </ul>
+            </div>
+            <div class="nav-subsection">
+                <h4>Số Nguyên Tố</h4>
+                <ul>
+                    <li><a href="#" onclick="loadArticle('primality-test')">Kiểm Tra Số Nguyên Tố</a></li>
+                    <li><a href="#" onclick="loadArticle('factorization')">Phân Tích Thừa Số Nguyên</a></li>
+                    <li><a href="#" onclick="loadArticle('sieve-eratosthenes')">Sàng Eratosthenes</a></li>
+                    <li><a href="#" onclick="loadArticle('linear-sieve')">Sàng Tuyến Tính</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="content">
+        <div class="welcome-section" id="welcome">
+            <h1>🎯 Chào mừng đến với Các Bài Đọc Thuật Toán</h1>
+            <p class="welcome-text">
+                Đây là bộ sưu tập các bài viết về thuật toán và cấu trúc dữ liệu được dịch và biên soạn bằng tiếng Việt. 
+                Hãy chọn một chủ đề từ menu bên trái để bắt đầu học!
+            </p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Chuyên mục chính</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">20+</span>
+                    <span class="stat-label">Bài viết thuật toán</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Tiếng Việt</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="article-content" id="article-content" style="display: none;">
+            <!-- Content will be loaded here -->
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

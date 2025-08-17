@@ -1,0 +1,13 @@
+{
+  "name": "cac-bai-doc-thuat-toan-website",
+  "version": "1.0.0",
+  "description": "Website cho các bài đọc thuật toán",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["algorithms", "vietnamese", "education", "computer-science"],
+  "author": "CacBaiDocThuatToan",
+  "license": "MIT"
+}

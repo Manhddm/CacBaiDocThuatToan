@@ -1,0 +1,130 @@
+{
+  "title": "Lũy Thừa Nhị Phân",
+  "category": "Đại Số",
+  "subcategory": "Nguyên Tắc Cơ Bản",
+  "difficulty": "Cơ bản",
+  "timeToRead": "10 phút",
+  "tags": ["exponentiation", "binary", "fast-power", "modular"],
+  "lastUpdated": "2025-08-17",
+  "content": {
+    "introduction": {
+      "title": "Giới thiệu",
+      "text": "Lũy thừa nhị phân (Binary Exponentiation) là một thuật toán để tính $a^n$ một cách hiệu quả trong thời gian $O(\\log n)$ thay vì $O(n)$ của phương pháp naive.",
+      "note": "Thuật toán này đặc biệt hữu ích khi cần tính lũy thừa với số mũ lớn hoặc khi tính lũy thừa modulo."
+    },
+    "sections": [
+      {
+        "title": "Ý tưởng thuật toán",
+        "content": [
+          {
+            "type": "text",
+            "content": "Ý tưởng cơ bản dựa trên biểu diễn nhị phân của số mũ và tính chất:"
+          },
+          {
+            "type": "formula",
+            "content": "$$a^{n} = \\begin{cases} 1 & \\text{nếu } n = 0 \\\\ (a^{n/2})^2 & \\text{nếu } n \\text{ chẵn} \\\\ a \\cdot a^{n-1} & \\text{nếu } n \\text{ lẻ} \\end{cases}$$"
+          },
+          {
+            "type": "example",
+            "content": "Ví dụ tính $3^{13}$:",
+            "formula": "$$3^{13} = 3^8 \\cdot 3^4 \\cdot 3^1 = (3^4)^2 \\cdot (3^2)^2 \\cdot 3$$"
+          }
+        ]
+      },
+      {
+        "title": "Cài đặt",
+        "content": [
+          {
+            "type": "subtitle",
+            "content": "Phiên bản đệ quy"
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "long long binpow(long long a, long long b) {\n    if (b == 0)\n        return 1;\n    long long res = binpow(a, b / 2);\n    if (b % 2)\n        return res * res * a;\n    else\n        return res * res;\n}"
+          },
+          {
+            "type": "subtitle",
+            "content": "Phiên bản lặp"
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "long long binpow(long long a, long long b) {\n    long long res = 1;\n    while (b > 0) {\n        if (b & 1)\n            res = res * a;\n        a = a * a;\n        b >>= 1;\n    }\n    return res;\n}"
+          },
+          {
+            "type": "subtitle",
+            "content": "Lũy thừa modulo"
+          },
+          {
+            "type": "code",
+            "language": "cpp",
+            "content": "long long binpow(long long a, long long b, long long mod) {\n    long long res = 1;\n    while (b > 0) {\n        if (b & 1)\n            res = res * a % mod;\n        a = a * a % mod;\n        b >>= 1;\n    }\n    return res;\n}"
+          }
+        ]
+      },
+      {
+        "title": "Độ phức tạp",
+        "content": [
+          {
+            "type": "complexity",
+            "content": "Thời gian: $O(\\log n)$ - Không gian: $O(1)$ (phiên bản lặp) hoặc $O(\\log n)$ (phiên bản đệ quy)"
+          }
+        ]
+      },
+      {
+        "title": "Ứng dụng mở rộng",
+        "content": [
+          {
+            "type": "text",
+            "content": "Thuật toán lũy thừa nhị phân có thể được áp dụng cho bất kỳ phép toán nào có tính chất kết hợp:"
+          },
+          {
+            "type": "text",
+            "content": "• Nhân ma trận: tính $A^n$ với ma trận $A$"
+          },
+          {
+            "type": "text", 
+            "content": "• Tính số Fibonacci thứ $n$ trong $O(\\log n)$"
+          },
+          {
+            "type": "text",
+            "content": "• Áp dụng một hàm $f$ tổng cộng $n$ lần: $f(f(...f(x)...))$"
+          }
+        ]
+      }
+    ],
+    "exercises": [
+      {
+        "title": "Binary Exponentiation",
+        "platform": "CSES",
+        "url": "https://cses.fi/problemset/task/1095"
+      },
+      {
+        "title": "Modular Exponentiation",
+        "platform": "AtCoder",
+        "url": "https://atcoder.jp/contests/abc156/tasks/abc156_d"
+      }
+    ],
+    "applications": [
+      {
+        "title": "Tính số Fibonacci",
+        "description": "Sử dụng nhân ma trận để tính số Fibonacci thứ n trong O(log n)"
+      },
+      {
+        "title": "RSA Cryptography",
+        "description": "Tính lũy thừa modulo lớn trong mã hóa RSA"
+      },
+      {
+        "title": "Number Theory",
+        "description": "Tính nghịch đảo modular và các bài toán lý thuyết số"
+      }
+    ],
+    "references": [
+      {
+        "title": "CP-Algorithms - Binary Exponentiation",
+        "url": "https://cp-algorithms.com/algebra/binary-exp.html"
+      }
+    ]
+  }
+}
